@@ -35,4 +35,14 @@ describe("Gilded Rose", function () {
 		expect(items[0].quality).to.equal(0);
 	});
 
+	it("should increase quality of 'Aged Brie'", function () {
+		const gildedRose = new GildedRose([ new Item("Aged Brie", 5, 0) ]);
+		let items = gildedRose.updateQuality();
+		expect(items[0].sellIn).to.equal(4);
+		expect(items[0].quality).to.equal(1);
+		items = gildedRose.updateQuality();
+		expect(items[0].sellIn).to.equal(3);
+		expect(items[0].quality).to.equal(2);
+	});
+
 });
