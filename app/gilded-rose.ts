@@ -66,4 +66,16 @@ export class GildedRose {
 
 		return this.items;
 	}
+
+	public updateQualityForNDays(n: number): Array<Item> {
+		let i = 1;
+		while (i <= n) {
+			const items = this.updateQuality();
+			if (i === n) {
+				return items;
+			}
+			i++;
+		}
+		throw new Error("Expected a return during while-loop");
+	}
 }
