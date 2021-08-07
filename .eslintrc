@@ -1,0 +1,227 @@
+{
+	"extends": [
+		// Extend the Eslint recommended config
+		"eslint:recommended",
+		// and the browser compatibility rules
+		"plugin:compat/recommended",
+		// and recommended React rules
+		"plugin:react/recommended",
+		// and recommended React Hooks rules
+		"plugin:react-hooks/recommended"
+	],
+	"overrides": [
+		{
+			"extends": [
+				"plugin:@typescript-eslint/recommended",
+				"plugin:@typescript-eslint/recommended-requiring-type-checking"
+			],
+			"files": [
+				"*.ts",
+				"*.tsx"
+			],
+			"parser": "@typescript-eslint/parser",
+			"parserOptions": {
+				"project": "./tsconfig.json",
+				"sourceType": "module"
+			},
+			"rules": {
+				// disable some 'recommended' rules that conflict with our coding style
+
+				// empty functions are fine
+				"@typescript-eslint/no-empty-function": 0,
+				// empty interfaces are fine
+				"@typescript-eslint/no-empty-interface": 0,
+				// verbose types is better
+				"@typescript-eslint/no-inferrable-types": 0,
+				// because of how functions are passed it might seem like you have unused arguments
+				"@typescript-eslint/no-unused-vars": 0,
+				//Downgrade errors to warning so a developer isn't forced to fix existing files before committing
+				"@typescript-eslint/no-unsafe-assignment": "warn",
+				"@typescript-eslint/no-floating-promises": "warn",
+				"@typescript-eslint/no-unsafe-call": "warn",
+				"@typescript-eslint/no-unsafe-member-access": "warn",
+				"@typescript-eslint/no-unsafe-return": "warn",
+				// force accessibility (public, private, protected) for all class members
+				"@typescript-eslint/explicit-member-accessibility": 1,
+				// warn
+
+				// disable mandatory quotes around object properties; this overrides our standards for .(m)js(x)
+				// files, which warn when quotes are not present. For TypeScript, our convention is to not use
+				// quotes when not necessary, but we don't enforce this yet.
+				"quote-props": "off",
+				// This seems ridiculous and childish, since you can just ignore the ban as well.
+				// There are occassions when ts-ignore is (unfortunately) necessary, such as when importing an mjs file
+				"@typescript-eslint/ban-ts-ignore": 0,
+				"@typescript-eslint/naming-convention": [
+					"warn",
+					{
+						"selector": "typeLike",
+						"format": [
+							"PascalCase"
+						]
+					}
+				]
+			}
+		}
+	],
+	"plugins": [
+		"@typescript-eslint/eslint-plugin"
+	],
+	"rules": {
+		// Require === and !==
+		"eqeqeq": "error",
+		// Require Guarding for-in.
+		"guard-for-in": "error",
+		// Enforce consistent indentation, require tabs.
+		"indent": [
+			"error",
+			"tab",
+			{
+				"SwitchCase": 1
+			}
+		],
+		// Require a space before and after keywords.
+		"keyword-spacing": [
+			"error",
+			{
+				"before": true,
+				"after": true
+			}
+		],
+		// Require constructor names to begin with a capital letter.
+		"new-cap": [
+			"error",
+			{
+				"properties": false,
+				"capIsNewExceptions": [
+					"TestCase",
+					"AsyncTestCase"
+				]
+			}
+		],
+		// Require parentheses when invoking a constructor with no arguments.
+		"new-parens": "error",
+		// Disallow bitwise operators.
+		"no-bitwise": "error",
+		// Disallow constant expressions in conditions, except for loops.
+		"no-constant-condition": [
+			"error",
+			{
+				"checkLoops": false
+			}
+		],
+		// Disallow the use of debugger.
+		"no-debugger": "error",
+		// Disallow the use of console. This is mainly to detect leftover debug code; we can
+		// add ignore comments for the few places where the console is legitimately used.
+		"no-console": "warn",
+		// Disallow the use of eval().
+		"no-eval": "error",
+		// Disallow empty block statements, except for catch statements.
+		"no-empty": [
+			"error",
+			{
+				"allowEmptyCatch": true
+			}
+		],
+		// Disallow mixed spaces and tabs for indentation.
+		"no-mixed-spaces-and-tabs": [
+			"error",
+			"smart-tabs"
+		],
+		// Disallow the use of undeclared variables.
+		"no-undef": "error",
+		// Disallow the use of 'undefined' as an identifier
+		"no-undefined": "error",
+		// Disallow Unused Variables.
+		// Checks only that locally-declared variables are used but will allow global variables to be unused.
+		// Do not check function arguments.
+		"no-unused-vars": [
+			"error",
+			{
+				"vars": "local",
+				"args": "none"
+			}
+		],
+		// Require semicolons at the end of statements.
+		"semi": [
+			"error",
+			"always"
+		],
+		// Always require a space before the parens of anonymous functions.
+		// Never allow one before the parens of named functions.
+		"space-before-function-paren": [
+			"error",
+			{
+				"anonymous": "always",
+				"named": "never"
+			}
+		],
+		// Require spacing around infix operators.
+		"space-infix-ops": "error",
+		// Enforce zero spaces inside of parentheses.
+		"space-in-parens": "error",
+		"strict": "error",
+		// Require IIFEs to be Wrapped at the call expression.
+		"wrap-iife": [
+			"error",
+			"outside"
+		],
+		"no-var": "warn",
+		// requires one or more spaces or newlines inside array brackets
+		"array-bracket-spacing": [
+			"warn",
+			"always"
+		],
+		// requires spacing inside of braces (except {})
+		"object-curly-spacing": [
+			"warn",
+			"always"
+		],
+		// requires quotes around all object literal property names
+		"quote-props": [
+			"warn",
+			"always"
+		],
+		// requires the use of double quotes wherever possible
+		// allows strings to use single-quotes or double-quotes so long as the string contains a quote that would have to be escaped otherwise
+		"quotes": [
+			"warn",
+			"double",
+			{
+				"avoidEscape": true
+			}
+		],
+		// requires trailing commas when the last element or property is in a different line than the closing ] or } and disallows
+		// trailing commas when the last element or property is on the same line as the closing ] or }...
+		"comma-dangle": [
+			"error",
+			{
+				"arrays": "always-multiline",
+				"objects": "always-multiline",
+				"imports": "always-multiline",
+				"exports": "always-multiline",
+				// ...except in function calls, where trailing commas are not supported by IE
+				"functions": "never"
+			}
+		],
+		// disallows spaces before commas
+		// requires one or more spaces after commas
+		"comma-spacing": [
+			"error"
+		],
+		// disallows space between the function name and the opening parenthesis
+		"func-call-spacing": [
+			"error"
+		],
+		// disallow unnecessary curly braces around JSX props and children
+		"react/jsx-curly-brace-presence": [
+			"error",
+			{
+				"props": "never",
+				"children": "never"
+			}
+		],
+		"arrow-parens": "error"
+	}
+}
