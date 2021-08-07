@@ -22,7 +22,7 @@ export class GildedRose {
 	}
 
 	public updateQuality(): Array<Item> {
-		this.items.forEach((item) => {
+		return this.items.map((item) => {
 			if (item.name !== GildedRose.AGED_BRIE && item.name !== GildedRose.BACKSTAGE_PASSES) {
 				if (item.quality > 0) {
 					if (item.name !== GildedRose.SULFURAS) {
@@ -66,9 +66,8 @@ export class GildedRose {
 					}
 				}
 			}
+			return item;
 		});
-
-		return this.items;
 	}
 
 	public updateQualityForNDays(n: number): Array<Item> {
