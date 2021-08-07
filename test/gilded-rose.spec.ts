@@ -59,4 +59,31 @@ describe("Gilded Rose", function () {
 		expect(items[0].quality).to.equal(80);
 	});
 
+	it("should increase value of backstage passes as concert-date approaches", function () {
+		const gildedRose = new GildedRose([ new Item("Backstage passes to a TAFKAL80ETC concert", 15, 10) ]);
+		/* Expect normal increase up to 10 days before concert */
+		let items = gildedRose.updateQualityForNDays(5);
+		expect(items[0].sellIn).to.equal(10);
+		expect(items[0].quality).to.equal(15);
+		/* Expect double increase from 10 - 5 days before concert */
+		items = gildedRose.updateQualityForNDays(1);
+		expect(items[0].sellIn).to.equal(9);
+		expect(items[0].quality).to.equal(17);
+		items = gildedRose.updateQualityForNDays(4);
+		expect(items[0].sellIn).to.equal(5);
+		expect(items[0].quality).to.equal(25);
+		/* Expect triple increase from 5 - 0 days before concert */
+		items = gildedRose.updateQualityForNDays(4);
+		expect(items[0].sellIn).to.equal(1);
+		expect(items[0].quality).to.equal(37);
+		/* Expect quality to be 0 after concert */
+		items = gildedRose.updateQualityForNDays(1);
+		expect(items[0].sellIn).to.equal(0);
+		expect(items[0].quality).to.equal(40);
+		/* Expect quality to be 0 after concert */
+		items = gildedRose.updateQualityForNDays(1);
+		expect(items[0].sellIn).to.equal(-1);
+		expect(items[0].quality).to.equal(0);
+	});
+
 });
