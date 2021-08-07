@@ -45,4 +45,11 @@ describe("Gilded Rose", function () {
 		expect(items[0].quality).to.equal(2);
 	});
 
+	it("should increase quality of items to a maximum of 50", function () {
+		const gildedRose = new GildedRose([ new Item("Aged Brie", 60, 0) ]);
+		const items = gildedRose.updateQualityForNDays(60);
+		expect(items[0].sellIn).to.equal(0);
+		expect(items[0].quality).to.equal(50);
+	});
+
 });
