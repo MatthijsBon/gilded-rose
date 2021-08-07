@@ -25,4 +25,14 @@ describe("Gilded Rose", function () {
 		expect(items[0].quality).to.equal(6);
 	});
 
+	it("should decrease ordinary items but quality may never be negative", function () {
+		const gildedRose = new GildedRose([ new Item("Foo", 0, 3) ]);
+		let items = gildedRose.updateQuality();
+		expect(items[0].sellIn).to.equal(-1);
+		expect(items[0].quality).to.equal(1);
+		items = gildedRose.updateQuality();
+		expect(items[0].sellIn).to.equal(-2);
+		expect(items[0].quality).to.equal(0);
+	});
+
 });
