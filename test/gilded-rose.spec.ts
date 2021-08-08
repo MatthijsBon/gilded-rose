@@ -89,6 +89,12 @@ describe("Gilded Rose", function () {
 		expect(lowerBoundItem.quality).to.equal(13);
 	});
 
+	it("should set quality to 0 for backstage passes after the concert", function () {
+		const gildedRose = new GildedRose([ new Item("Backstage passes to a TAFKAL80ETC concert", -1, 10) ]);
+		const updatedItems = gildedRose.updateQuality();
+		expect(updatedItems[0].quality).to.equal(0);
+	});
+
 	it("should decrease quality of 'Conjured' items twice as fast", function () {
 		const gildedRose = new GildedRose([ new Item("Conjured", 15, 10) ]);
 		const items = gildedRose.updateQualityForNDays(5);
