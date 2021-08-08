@@ -59,31 +59,34 @@ describe("Gilded Rose", function () {
 		expect(items[0].quality).to.equal(80);
 	});
 
-	it("should increase value of backstage passes as concert-date approaches", function () {
-		const gildedRose = new GildedRose([ new Item("Backstage passes to a TAFKAL80ETC concert", 15, 10) ]);
-		/* Expect normal increase up to 10 days before concert */
-		let items = gildedRose.updateQualityForNDays(5);
-		expect(items[0].sellIn).to.equal(10);
-		expect(items[0].quality).to.equal(15);
-		/* Expect double increase from 10 - 5 days before concert */
-		items = gildedRose.updateQualityForNDays(1);
-		expect(items[0].sellIn).to.equal(9);
-		expect(items[0].quality).to.equal(17);
-		items = gildedRose.updateQualityForNDays(4);
-		expect(items[0].sellIn).to.equal(5);
-		expect(items[0].quality).to.equal(25);
-		/* Expect triple increase from 5 - 0 days before concert */
-		items = gildedRose.updateQualityForNDays(4);
-		expect(items[0].sellIn).to.equal(1);
-		expect(items[0].quality).to.equal(37);
-		/* Expect quality to be 0 after concert */
-		items = gildedRose.updateQualityForNDays(1);
-		expect(items[0].sellIn).to.equal(0);
-		expect(items[0].quality).to.equal(40);
-		/* Expect quality to be 0 after concert */
-		items = gildedRose.updateQualityForNDays(1);
-		expect(items[0].sellIn).to.equal(-1);
-		expect(items[0].quality).to.equal(0);
+	it("should increase quality by 1 for backstage passes when concert is in more than 10 days", function () {
+		const gildedRose = new GildedRose([ new Item("Backstage passes to a TAFKAL80ETC concert", 11, 10) ]);
+		const updatedItems = gildedRose.updateQuality();
+		expect(updatedItems[0].quality).to.equal(11);
+	});
+
+	it("should increase quality by 2 for backstage passes when concert is in 6 - 10 days", function () {
+		const gildedRose = new GildedRose([
+			new Item("Backstage passes to a TAFKAL80ETC concert", 10, 10),
+			new Item("Backstage passes to a TAFKAL80ETC concert", 6, 10),
+		]);
+		const items = gildedRose.updateQuality();
+		const upperBoundItem = items[0];
+		expect(upperBoundItem.quality).to.equal(12);
+		const lowerBoundItem = items[1];
+		expect(lowerBoundItem.quality).to.equal(12);
+	});
+
+	it("should increase quality by 3 for backstage passes when concert is in 5 or less days", function () {
+		const gildedRose = new GildedRose([
+			new Item("Backstage passes to a TAFKAL80ETC concert", 5, 10),
+			new Item("Backstage passes to a TAFKAL80ETC concert", 0, 10),
+		]);
+		const items = gildedRose.updateQuality();
+		const upperBoundItem = items[0];
+		expect(upperBoundItem.quality).to.equal(13);
+		const lowerBoundItem = items[1];
+		expect(lowerBoundItem.quality).to.equal(13);
 	});
 
 	it("should decrease quality of 'Conjured' items twice as fast", function () {
