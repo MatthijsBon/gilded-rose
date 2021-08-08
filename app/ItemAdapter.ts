@@ -60,3 +60,11 @@ export class SulfurasItemAdapter extends AbstractItemAdapter {
 		// Sulfuras items never change state
 	}
 }
+
+export class ConjuredItemAdapter extends AbstractItemAdapter {
+
+	public updateState(): void {
+		this.item.quality = this.decreaseQuality(2);
+		this.item.sellIn--;
+	}
+}

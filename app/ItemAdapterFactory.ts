@@ -2,6 +2,7 @@ import { GildedRose, Item } from "./gilded-rose";
 import {
 	AgingItemAdapter,
 	BackstagePassItemAdapter,
+	ConjuredItemAdapter,
 	ItemAdapter,
 	OrdinaryItemAdapter,
 	SulfurasItemAdapter,
@@ -17,6 +18,8 @@ export class ItemAdapterFactory {
 				return new SulfurasItemAdapter(item);
 			case GildedRose.BACKSTAGE_PASSES:
 				return new BackstagePassItemAdapter(item);
+			case GildedRose.CONJURED:
+				return new ConjuredItemAdapter(item);
 			default:
 				return new OrdinaryItemAdapter(item);
 		}

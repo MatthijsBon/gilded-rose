@@ -16,6 +16,7 @@ export class GildedRose {
 	public static readonly AGED_BRIE = "Aged Brie";
 	public static readonly SULFURAS = "Sulfuras, Hand of Ragnaros";
 	public static readonly BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
+	public static readonly CONJURED = "Conjured";
 
 	private readonly items: Array<Item>;
 
