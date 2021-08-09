@@ -7,6 +7,8 @@ import { Tab, Tabs } from "./Tabs";
 interface GildedRoseContext {
 	items: Array<Item>;
 	setItems: React.Dispatch<React.SetStateAction<Array<Item>>>;
+	earnings: number;
+	updateEarnings: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const GildedRoseContext = React.createContext<GildedRoseContext | null>(null);
@@ -14,6 +16,8 @@ const GildedRoseContext = React.createContext<GildedRoseContext | null>(null);
 interface GildedRoseContextProviderProps {
 	items: Array<Item>;
 	setItems: React.Dispatch<React.SetStateAction<Array<Item>>>;
+	earnings: number;
+	updateEarnings: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export const GildedRoseContextProvider = ({ children, ...contextValue }: React.PropsWithChildren<GildedRoseContextProviderProps>): React.ReactElement => {
@@ -32,8 +36,9 @@ export const useGildedRoseContext = (): GildedRoseContext => {
 
 export const GildedRose = (): React.ReactElement => {
 	const [ items, setItems ] = React.useState<Array<Item>>([]);
+	const [ earnings, updateEarnings ] = React.useState<number>(0);
 
-	return <GildedRoseContextProvider items={items} setItems={setItems}>
+	return <GildedRoseContextProvider items={items} setItems={setItems} earnings={earnings} updateEarnings={updateEarnings} >
 		<Tabs>
 			<Tab title="Inventory">
 				<InventoryTab />

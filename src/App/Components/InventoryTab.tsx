@@ -2,9 +2,10 @@ import React from "react";
 import { GildedRose, Item } from "../../model/gilded-rose";
 import { useGildedRoseContext } from "./GildedRose";
 import { Table } from "./Table";
+import { Toolbar } from "./Toolbar";
 
 export const InventoryTab = (): React.ReactElement => {
-	const { items, setItems } = useGildedRoseContext();
+	const { items, setItems, earnings, updateEarnings } = useGildedRoseContext();
 
 	const gildedRose = React.useMemo(() => {
 		return new GildedRose(items);
@@ -35,6 +36,9 @@ export const InventoryTab = (): React.ReactElement => {
 					return localItem.name !== item.name;
 				});
 			});
+			updateEarnings((earnings) => {
+				return earnings + item.quality;
+			});
 		};
 
 		return <>
@@ -45,7 +49,7 @@ export const InventoryTab = (): React.ReactElement => {
 				<button onClick={sellItem}>Sell</button>
 			</td>
 		</>;
-	}, [ setItems ]);
+	}, [ setItems, updateEarnings ]);
 
 	const handleClick = React.useCallback((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 		event.preventDefault();
@@ -59,6 +63,13 @@ export const InventoryTab = (): React.ReactElement => {
 			data={identifiableItems}
 			renderCells={renderCells}
 		/>
-		<button onClick={handleClick}>Advance one day</button>
+		<Toolbar position="right">
+			<button onClick={handleClick}>Advance one day</button>
+		</Toolbar>
+		<Toolbar position="right">
+			<span>
+				Total earnings: {earnings}
+			</span>
+		</Toolbar>
 	</>;
 };
