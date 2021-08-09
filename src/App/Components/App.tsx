@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import { GildedRose } from "./GildedRose";
 
 const App = (): React.ReactElement => {
 	return (
@@ -8,9 +9,7 @@ const App = (): React.ReactElement => {
 				<h1>Gilded Rose Inn</h1>
 			</div>
 			<div className="main">
-				<p className="primary">
-					CONTENT
-				</p>
+				<GildedRose />
 			</div>
 			<div className="footer">
 				<div className="socials">
