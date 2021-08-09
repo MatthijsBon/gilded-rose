@@ -13,6 +13,7 @@ export const DataManagementTab = (): React.ReactElement => {
 			"Item name",
 			"Sell in",
 			"Quality",
+			"Actions",
 		];
 	}, []);
 
