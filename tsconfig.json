@@ -1,12 +1,19 @@
 {
 	"compilerOptions": {
-		"module": "commonjs",
-		"target": "es5",
+		"module": "esnext",
+		"target": "es2017",
 		"strict": true,
 		"noImplicitAny": false,
-		"sourceMap": false
+		"sourceMap": true,
+		"esModuleInterop": true,
+		"jsx": "react-jsx",
+		"moduleResolution": "node",
+		"lib": [
+			"dom",
+			"esnext"
+		],
 	},
-	"exclude": [
-		"node_modules"
+	"include": [
+		"src"
 	]
 }
