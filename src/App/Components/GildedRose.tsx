@@ -3,6 +3,7 @@ import { Item } from "../../model/gilded-rose";
 import { DataManagementTab } from "./DataManagementTab";
 import { InventoryTab } from "./InventoryTab";
 import { Tab, Tabs } from "./Tabs";
+import { items as defaultItems } from "../../Data/Items";
 
 interface GildedRoseContext {
 	items: Array<Item>;
@@ -35,7 +36,7 @@ export const useGildedRoseContext = (): GildedRoseContext => {
 };
 
 export const GildedRose = (): React.ReactElement => {
-	const [ items, setItems ] = React.useState<Array<Item>>([]);
+	const [ items, setItems ] = React.useState<Array<Item>>(defaultItems);
 	const [ earnings, updateEarnings ] = React.useState<number>(0);
 
 	return <GildedRoseContextProvider items={items} setItems={setItems} earnings={earnings} updateEarnings={updateEarnings} >
