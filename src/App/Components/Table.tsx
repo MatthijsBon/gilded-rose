@@ -11,7 +11,7 @@ interface TableWithNewEntriesCreatorRowProps<I extends Identifiable> {
 }
 
 interface DefaultTableProps {
-	enableNewEntries: false;
+	enableNewEntries?: false;
 }
 
 interface CommonTableProps<I extends Identifiable> {
@@ -69,7 +69,7 @@ interface TableBodyWithNewEntriesCreatorRowProps<I extends Identifiable> {
 }
 
 interface DefaultTableBodyProps {
-	enableNewEntries: false;
+	enableNewEntries?: false;
 }
 
 type TableBodyProps<I extends Identifiable> = CommonTableBodyProps<I> & (DefaultTableBodyProps | TableBodyWithNewEntriesCreatorRowProps<I>);
