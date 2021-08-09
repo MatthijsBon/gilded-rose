@@ -1,8 +1,8 @@
 import React from "react";
 import { Item } from "../../model/gilded-rose";
 import { DataManagementTab } from "./DataManagementTab";
+import { InventoryTab } from "./InventoryTab";
 import { Tab, Tabs } from "./Tabs";
-import { P } from "./Text";
 
 interface GildedRoseContext {
 	items: Array<Item>;
@@ -36,7 +36,7 @@ export const GildedRose = (): React.ReactElement => {
 	return <GildedRoseContextProvider items={items} setItems={setItems}>
 		<Tabs>
 			<Tab title="Inventory">
-				<P>INVENTORY PLACEHOLDER</P>
+				<InventoryTab />
 			</Tab>
 			<Tab title="Manage data">
 				<DataManagementTab/>
