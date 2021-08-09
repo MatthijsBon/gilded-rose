@@ -1,5 +1,7 @@
 import React from "react";
+import styled from "styled-components";
 import { Item } from "../../model/gilded-rose";
+import { DataGraph } from "./DataGraph";
 import { DataManagementTab } from "./DataManagementTab";
 import { InventoryTab } from "./InventoryTab";
 import { Tab, Tabs } from "./Tabs";
@@ -40,13 +42,30 @@ export const GildedRose = (): React.ReactElement => {
 	const [ earnings, updateEarnings ] = React.useState<number>(0);
 
 	return <GildedRoseContextProvider items={items} setItems={setItems} earnings={earnings} updateEarnings={updateEarnings} >
-		<Tabs>
-			<Tab title="Inventory">
-				<InventoryTab />
-			</Tab>
-			<Tab title="Manage data">
-				<DataManagementTab/>
-			</Tab>
-		</Tabs>
+		<Pane>
+			<Tabs>
+				<Tab title="Inventory">
+					<InventoryTab />
+				</Tab>
+				<Tab title="Manage data">
+					<DataManagementTab/>
+				</Tab>
+			</Tabs>
+		</Pane>
+		<Pane>
+			<DataGraph />
+		</Pane>
 	</GildedRoseContextProvider>;
 };
+
+const Pane = styled.div`
+	display: flex;
+	flex-flow: column;
+	background: white;
+	padding: 20px;
+	flex: 1 1 auto;
+	min-height: 500px;
+	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+	margin: 5px;
+	border-radius: 5px;
+`;

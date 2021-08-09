@@ -7,7 +7,7 @@ interface TabsProps {
 	children: React.ReactElement<TabProps>[];
 }
 
-const TabsRaw = ({ children }: TabsProps): React.ReactElement => {
+export const Tabs = ({ children }: TabsProps): React.ReactElement => {
 	const [ selectedTabIndex, setSelectedTabIndex ] = React.useState(0);
 
 	return (
@@ -33,12 +33,8 @@ const TabsRaw = ({ children }: TabsProps): React.ReactElement => {
 const TabsContainer = styled.div`
 	display: flex;
 	flex-flow: column;
-	background: white;
-	padding: 50px;
 	flex: 1 1 auto;
 	min-height: 500px;
-	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-	border-radius: 5px;
 `;
 
 const Ul = styled.ul`
@@ -56,19 +52,4 @@ const Separator = styled.div`
 	height: 4px;
 	background: #CCCCCC;
 	border-radius: 1px;
-`;
-
-export const Tabs = styled(TabsRaw)`
-	margin-top: 10px
-    color: rgba(0,0,0,0.6)
-    display: inline-block
-    padding: 10px
-    border-bottom: 2px solid rgba(0,0,0,0.2)
-    border-radius: 10px 10px 0 0
-    cursor: pointer
-    &:hover,
-    &.active {
-      background: none
-      border-bottom: 2px solid rgba(0,0,0,0.5)
-	}
 `;
