@@ -1,12 +1,13 @@
 import React from "react";
 import "./App.css";
 import { GildedRose } from "./GildedRose";
+import { H1 } from "./Text";
 
 const App = (): React.ReactElement => {
 	return (
 		<div className="container">
 			<div className="header">
-				<h1>Gilded Rose Inn</h1>
+				<H1>Gilded Rose Inn</H1>
 			</div>
 			<div className="main">
 				<GildedRose />

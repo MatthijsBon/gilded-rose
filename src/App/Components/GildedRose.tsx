@@ -1,6 +1,7 @@
 import React from "react";
 import { Item } from "../../model/gilded-rose";
 import { Tab, Tabs } from "./Tabs";
+import { P } from "./Text";
 
 interface GildedRoseContext {
 	items: Array<Item>;
@@ -26,14 +27,10 @@ export const GildedRose = (): React.ReactElement => {
 	return <GildedRoseContextProvider items={items} setItems={setItems}>
 		<Tabs>
 			<Tab title="Inventory">
-				<p className="primary">
-					INVENTORY PLACEHOLDER
-				</p>
+				<P>INVENTORY PLACEHOLDER</P>
 			</Tab>
 			<Tab title="Manage data">
-				<p className="primary">
-					MANAGE DATA PLACEHOLDER
-				</p>
+				<P>MANAGE DATA PLACEHOLDER</P>
 			</Tab>
 		</Tabs>
 	</GildedRoseContextProvider>;
