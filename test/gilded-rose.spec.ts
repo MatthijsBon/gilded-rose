@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { GildedRose, Item } from "../app/gilded-rose";
+import { GildedRose, Item } from "../src/model/gilded-rose";
 
 describe("Gilded Rose", function () {
 

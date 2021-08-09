@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { GildedRose, Item } from "../app/gilded-rose";
+import { GildedRose, Item } from "../src/model/gilded-rose";
 
 const items = [
 	new Item("+5 Dexterity Vest", 10, 20), //
