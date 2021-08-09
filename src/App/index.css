@@ -5,6 +5,14 @@ body {
 	sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	background-color: #263238;
+}
+
+body h1,
+body h2,
+body h3,
+body p.primary {
+	color: #CCC;
 }
 
 code {
