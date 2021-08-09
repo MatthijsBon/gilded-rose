@@ -1,14 +1,12 @@
 import React from "react";
 import { Item } from "../../model/gilded-rose";
+import { useGildedRoseContext } from "./GildedRose";
 import { SimpleInput } from "./SimpleInput";
 import { Table } from "./Table";
 
-interface DataManagementTabProps {
-	items: Array<Item>;
-	setItems: React.Dispatch<React.SetStateAction<Array<Item>>>;
-}
+export const DataManagementTab = (): React.ReactElement => {
 
-export const DataManagementTab = ({ items, setItems }: DataManagementTabProps): React.ReactElement => {
+	const { items, setItems } = useGildedRoseContext();
 
 	const columns = React.useMemo(() => {
 		return [
