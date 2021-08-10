@@ -5,8 +5,8 @@ import { GildedRose } from "../../model/gilded-rose";
 import { useGildedRoseContext } from "./GildedRose";
 import { H1 } from "./Text";
 
-const margin = { top: 60, right: 230, bottom: 50, left: 300 };
-const width = 960 - margin.left - margin.right;
+const margin = { top: 60, right: 230, bottom: 50, left: 150 };
+const width = 860 - margin.left - margin.right;
 const height = 400 - margin.top - margin.bottom;
 
 interface DataEntry {
@@ -74,7 +74,6 @@ const D3Container = ({ data }: D3ContainerProps) => {
 
 const SVGContainer = styled.svg`
 	min-width: 500px;
-	margin-left: 50px;
 `;
 
 function updateOrSetCategoryQuality(categorized: Record<string, number>, name: string, quality: number): Record<string, number> {
@@ -92,9 +91,10 @@ export const DataGraph = (): React.ReactElement => {
 	const itemQualities = React.useMemo(() => {
 		const index = items.reduce((categorized: Record<string, number>, item) => {
 			switch (item.name) {
+				case GildedRose.BACKSTAGE_PASSES:
+					return updateOrSetCategoryQuality(categorized, "Backstage passes", item.quality);
 				case GildedRose.AGED_BRIE:
 				case GildedRose.SULFURAS:
-				case GildedRose.BACKSTAGE_PASSES:
 				case GildedRose.CONJURED:
 					return updateOrSetCategoryQuality(categorized, item.name, item.quality);
 				default:
