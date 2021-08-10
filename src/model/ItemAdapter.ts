@@ -45,13 +45,14 @@ export class AgingItemAdapter extends AbstractItemAdapter {
 export class BackstagePassItemAdapter extends AbstractItemAdapter {
 
 	public updateState(): void {
-		if (this.item.sellIn >= 0) {
+		if (this.item.sellIn > 0) {
 			const n = this.item.sellIn < 6 ? 3 : this.item.sellIn < 11 ? 2 : 1;
 			this.item.quality = this.increaseQuality(n);
-		} else {
-			this.item.quality = 0;
 		}
 		this.item.sellIn--;
+		if (this.item.sellIn < 0) {
+			this.item.quality = 0;
+		}
 	}
 }
 
