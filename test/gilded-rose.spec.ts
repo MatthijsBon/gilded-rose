@@ -81,13 +81,21 @@ describe("Gilded Rose", function () {
 	it("should increase quality by 3 for backstage passes when concert is in 5 or less days", function () {
 		const gildedRose = new GildedRose([
 			new Item("Backstage passes to a TAFKAL80ETC concert", 5, 10),
-			new Item("Backstage passes to a TAFKAL80ETC concert", 0, 10),
+			new Item("Backstage passes to a TAFKAL80ETC concert", 1, 10),
 		]);
 		const items = gildedRose.updateQuality();
 		const upperBoundItem = items[0];
 		expect(upperBoundItem.quality).to.equal(13);
 		const lowerBoundItem = items[1];
 		expect(lowerBoundItem.quality).to.equal(13);
+	});
+
+	it("should set quality to 0 for backstage passes **immediately** after the concert", function () {
+		const gildedRose = new GildedRose([
+			new Item("Backstage passes to a TAFKAL80ETC concert", 0, 10),
+		]);
+		const items = gildedRose.updateQuality();
+		expect(items[0].quality).to.equal(0);
 	});
 
 	it("should set quality to 0 for backstage passes after the concert", function () {
